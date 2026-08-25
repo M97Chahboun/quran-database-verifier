@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Verification Cache & Reference DBs
+databases/.cache/
+databases/reference/
+.DS_Store
