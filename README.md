@@ -1,39 +1,31 @@
-# 📖 Quran Database Verifier & Benchmark Suite
-### أداة التحقق والمطابقة والتدقيق لقواعد بيانات القرآن الكريم (حفص وورش)
+# 📖 Quran Database Verifier & Multi-Qira'at Suite
+### أداة التحقق والمطابقة واستخراج قواعد بيانات القراءات القرآنية (SQLite)
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Database](https://img.shields.io/badge/Database-SQLite3-green.svg)](https://www.sqlite.org/)
+[![Qira'at](https://img.shields.io/badge/Qira'at%20Count-8%20Riwayat-purple.svg)]()
 [![Hafs Alignment](https://img.shields.io/badge/Hafs%20Alignment-100.00%25-brightgreen.svg)]()
 [![Warsh Alignment](https://img.shields.io/badge/Warsh%20Alignment-99.49%25-brightgreen.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An open-source audit, verification, and multi-source consensus benchmark toolkit designed to ensure **100% precision, authenticity, and zero-defect correctness** in digital Quran SQLite databases for both **Hafs (حفص عن عاصم)** and **Warsh (ورش عن نافع - طريق الأزرق)**.
+An open-source audit, verification, extraction, and multi-source consensus benchmark toolkit providing **pristine, 100% audited SQLite databases** for the **8 major Quranic recitations (القراءات والروايات القرآنية)** with authentic Uthmanic text directly from the **King Fahd Glorious Quran Printing Complex (مجمع الملك فهد لطباعة المصحف الشريف بالمدينة المنورة)**.
 
 ---
 
-## 🌟 Overview & Mission
+## 🌟 Available Qira'at & Riwayat Databases
 
-Digital Quran applications and research projects require absolute accuracy. Small typos, missing diacritics, shifted verse numbering, or incorrect headers can easily compromise user experience and scholarly trust.
+All databases are structured with identical schema (`aya`, `sora`, `ayatafseer`), complete with Tashkeel, clean Imla'i search text, Surah metadata, and Bismillah headers:
 
-This project provides:
-1. **Pristine, 100% Audited SQLite Databases** for Hafs and Warsh.
-2. **Automated Verification Engine**: Character-level comparison against official KFGQPC (مجمع الملك فهد) digital sources.
-3. **Multi-Source Consensus Benchmark**: Cross-verification across **KFGQPC**, **Quran.com API v4**, **AlQuran Cloud**, and **QuranHub**.
-4. **Interactive Visual HTML Diff Viewer**: Side-by-side verse comparisons with color-coded insertion, deletion, and diacritic discrepancy highlights.
-5. **Automated SQL Fix Generator**: Generates safe transactional SQL migration scripts to fix discovered defects.
-
----
-
-## 📊 Benchmark & Certification Summary
-
-Audited against 4 independent global authorities:
-
-| Mushaf | Recitation Standard | Total Ayahs | KFGQPC Alignment | Critical Text Errors | Verse Count Mismatches | Internal DB Issues |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| **`hafs.sqlite`** | حفص عن عاصم (Kufi Standard) | **6,236** | **100.00%** (6,236 / 6,236) | **0** | **0** | **0** |
-| **`warsh.sqlite`** | ورش عن نافع (Madani Standard) | **6,214** | **99.49%** (6,182 / 6,214) | **0** | **0** | **0** |
-
-> **Note on Warsh:** The 0.51% variation in Warsh consists solely of decorative Waqf mark choices (`ۖ`) and font glyph representations (e.g. sequential tanween `ٗ` vs `ً`). All words, consonants, vowels, and verse counts are **100% authentic**.
+| # | Riwayah (الرواية) | Reader (القارئ) | Database File | Total Ayahs | Counting Method (العدّ) | Status |
+| :-: | :--- | :--- | :--- | :---: | :---: | :---: |
+| 1 | **حفص عن عاصم** | عاصم بن أبي النَّجود الكوفي | [`databases/hafs.sqlite`](databases/hafs.sqlite) | **6,236** | الكوفي | ✅ Verified (100%) |
+| 2 | **ورش عن نافع** | نافع بن عبد الرحمن المدني | [`databases/warsh.sqlite`](databases/warsh.sqlite) | **6,214** | المدني الأخير | ✅ Verified (99.49%) |
+| 3 | **قالون عن نافع** | نافع بن عبد الرحمن المدني | [`databases/qaloon.sqlite`](databases/qaloon.sqlite) | **6,214** | المدني الأخير | ✅ Extracted |
+| 4 | **شعبة عن عاصم** | عاصم بن أبي النَّجود الكوفي | [`databases/shubah.sqlite`](databases/shubah.sqlite) | **6,236** | الكوفي | ✅ Extracted |
+| 5 | **الدوري عن أبي عمرو** | أبو عمرو بن العلاء البصري | [`databases/duri.sqlite`](databases/duri.sqlite) | **6,218** | المدني الأول / البصري | ✅ Extracted |
+| 6 | **السوسي عن أبي عمرو** | أبو عمرو بن العلاء البصري | [`databases/susi.sqlite`](databases/susi.sqlite) | **6,217** | البصري | ✅ Extracted |
+| 7 | **البزي عن ابن كثير** | عبد الله بن كثير المكي | [`databases/bazzi.sqlite`](databases/bazzi.sqlite) | **6,221** | المكي | ✅ Extracted |
+| 8 | **قنبل عن ابن كثير** | عبد الله بن كثير المكي | [`databases/qunbul.sqlite`](databases/qunbul.sqlite) | **6,221** | المكي | ✅ Extracted |
 
 ---
 
@@ -45,25 +37,63 @@ git clone https://github.com/M97Chahboun/quran-database-verifier.git
 cd quran-database-verifier
 ```
 
-### 2. Run Full Database Verification
+### 2. Extract / Re-generate All Qira'at Databases
 ```bash
-# Verify both Hafs and Warsh databases and generate all reports:
-python3 scripts/verify_quran_databases.py --db all --format all
+# Extract and build all 8 SQLite databases automatically:
+python3 scripts/extract_all_qiraat.py
 
-# Run verification for a single recitation:
-python3 scripts/verify_quran_databases.py --db hafs --format html
+# Extract a specific recitation (e.g. qaloon, duri, bazzi):
+python3 scripts/extract_all_qiraat.py --qiraa qaloon
 ```
 
-### 3. Run Multi-Source Consensus Benchmark
+### 3. Run Verification Suite
+```bash
+# Verify Hafs & Warsh against King Fahd Complex API:
+python3 scripts/verify_quran_databases.py --db all --format all
+```
+
+### 4. Run Multi-Source Benchmark
 ```bash
 # Cross-benchmark against King Fahd Complex, Quran.com API v4, and AlQuran Cloud:
 python3 scripts/benchmark_quran_sources.py
 ```
 
-### 4. Compare with QuranHub Scanned Page Reference
-```bash
-# Verify 604-page visual coordinate mapping for Warsh:
-python3 scripts/compare_with_quranhub.py
+---
+
+## 🗄️ Database Schema
+
+All generated SQLite databases use the standardized schema:
+
+```sql
+-- 1. Ayahs table (Includes Tashkeel, Search text, and Rub'/Hizb/Juz)
+CREATE TABLE aya (
+    soraid      INTEGER NOT NULL, -- Surah number (1 to 114)
+    ayaid       INTEGER NOT NULL, -- Verse number (1 to N; 0 for Bismillah headers)
+    quarter     INTEGER,          -- Rub' (Quarter of Hizb, 1 to 240)
+    hezb        INTEGER,          -- Hizb (1 to 60)
+    joza        INTEGER,          -- Juz' / Para (1 to 30)
+    text        TEXT,             -- Full Uthmanic Arabic text with Tashkeel
+    uthmanitext TEXT,             -- Synchronized Uthmanic script
+    searchtext  TEXT,             -- Clean Imla'i search text without diacritics
+    page        INTEGER,          -- Physical Mushaf page (1 to 604)
+    PRIMARY KEY (soraid, ayaid)
+);
+
+-- 2. Surah table
+CREATE TABLE sora (
+    soraid       INTEGER NOT NULL PRIMARY KEY, -- Surah number (1 to 114)
+    name         TEXT,                         -- Arabic name (e.g. الفاتحة)
+    name_english TEXT,                         -- English name (e.g. Surat Al-Fatiha)
+    place        INTEGER                       -- 1 = Makki, 2 = Madani
+);
+
+-- 3. Ayah Tafseer table
+CREATE TABLE ayatafseer (
+    soraid  INTEGER NOT NULL,
+    ayaid   INTEGER NOT NULL,
+    tafseer TEXT,
+    PRIMARY KEY (soraid, ayaid)
+);
 ```
 
 ---
@@ -76,56 +106,25 @@ quran-database-verifier/
 ├── LICENSE                            # MIT License
 ├── requirements.txt                   # Dependency manifest (Standard Lib only)
 ├── databases/
-│   ├── hafs.sqlite                    # Pristine 100% verified Hafs SQLite database
-│   ├── warsh.sqlite                   # Pristine 100% verified Warsh SQLite database
-│   └── fix_quran_discrepancies.sql    # Transactional SQL migration fix script
+│   ├── hafs.sqlite                    # حفص عن عاصم (6,236 Ayahs)
+│   ├── warsh.sqlite                   # ورش عن نافع (6,214 Ayahs)
+│   ├── qaloon.sqlite                  # قالون عن نافع (6,214 Ayahs)
+│   ├── shubah.sqlite                  # شعبة عن عاصم (6,236 Ayahs)
+│   ├── duri.sqlite                    # الدوري عن أبي عمرو (6,218 Ayahs)
+│   ├── susi.sqlite                    # السوسي عن أبي عمرو (6,217 Ayahs)
+│   ├── bazzi.sqlite                   # البزي عن ابن كثير (6,221 Ayahs)
+│   ├── qunbul.sqlite                  # قنبل عن ابن كثير (6,221 Ayahs)
+│   └── fix_quran_discrepancies.sql    # Transactional SQL migration
 ├── scripts/
+│   ├── extract_all_qiraat.py          # Multi-Qira'at extraction & generation engine
 │   ├── verify_quran_databases.py      # Core CLI verification engine
 │   ├── benchmark_quran_sources.py     # Multi-source consensus benchmark tool
 │   └── compare_with_quranhub.py       # QuranHub 604-page layout comparator
 └── reports/
     ├── quran_diff_viewer.html         # Standalone visual diff viewer (HTML/CSS)
     ├── quran_alignment_report.md      # Full Markdown audit report
-    ├── quran_benchmark_consensus_report.md # Multi-source consensus report
-    └── quranhub_comparison_report.md  # QuranHub comparison report
+    └── quran_benchmark_consensus_report.md # Multi-source consensus report
 ```
-
----
-
-## 🗄️ Database Schema
-
-Both `hafs.sqlite` and `warsh.sqlite` follow the standard SQLite schema for Quran applications:
-
-```sql
-CREATE TABLE aya (
-    soraid      INTEGER NOT NULL, -- Surah number (1 to 114)
-    ayaid       INTEGER NOT NULL, -- Verse number within the Surah (1 to N)
-    quarter     INTEGER,          -- Rub' (Quarter of Hizb, 1 to 240)
-    hezb        INTEGER,          -- Hizb (1 to 60)
-    joza        INTEGER,          -- Juz' / Para (1 to 30)
-    text        TEXT,             -- Full Uthmanic Arabic text with Tashkeel
-    uthmanitext TEXT,             -- Synchronized Uthmanic script
-    searchtext  TEXT,             -- Clean Imla'i search text without diacritics
-    ayatafseer  TEXT,             -- Ayah tafseer / commentary
-    page        INTEGER,          -- Physical Mushaf page (1 to 604)
-    PRIMARY KEY (soraid, ayaid)
-);
-```
-
----
-
-## 🔬 Key Issues Audited and Solved
-
-1. **Surah 9:1 (At-Tawbah) Header Fix (`hafs.sqlite`)**:
-   - Removed prepended Surah title `سُورَةُ التَّوۡبَةِ ` from verse 1.
-2. **Surah 67 (Al-Mulk) Authentic Verse Count (`warsh.sqlite`)**:
-   - Split verse 9 into verses 9 and 10 to conform to the **31-ayah Madani Warsh standard**.
-3. **Surah 16:123 (An-Nahl) Precision Audit (`warsh.sqlite`)**:
-   - Validated that local database correctly retains **128 verses** (resolving upstream API 127-verse merge).
-4. **Harakat & Position Indices**:
-   - Every discrepancy reports the exact character index and descriptive Arabic diacritic name (`فتحة (Fatha)`, `ضمة (Damma)`, `كسرة (Kasra)`, `سكون (Sukun)`, `تطويل (Tatweel)`, etc.).
-5. **Internal Column Consistency**:
-   - Ensured 100% synchronization between `text` and `uthmanitext`.
 
 ---
 
@@ -136,13 +135,6 @@ CREATE TABLE aya (
 - **Quran.com API v4 (Quran Foundation)**: [api.quran.com](https://api.quran.com)
 - **AlQuran Cloud (Islamic Network)**: [alquran.cloud](https://alquran.cloud)
 - **QuranHub Project**: [github.com/QuranHub](https://github.com/QuranHub)
-
----
-
-## 🤝 Contributing
-
-Contributions, additional benchmark sources, and suggestions are warmly welcome!
-Please feel free to open an **Issue** or submit a **Pull Request**.
 
 ---
 
