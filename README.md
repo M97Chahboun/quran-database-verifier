@@ -5,7 +5,7 @@
 [![Database](https://img.shields.io/badge/Database-SQLite3-green.svg)](https://www.sqlite.org/)
 [![Qira'at](https://img.shields.io/badge/Qira'at%20Count-8%20Riwayat-purple.svg)]()
 [![Hafs Alignment](https://img.shields.io/badge/Hafs%20Alignment-100.00%25-brightgreen.svg)]()
-[![Warsh Alignment](https://img.shields.io/badge/Warsh%20Alignment-99.49%25-brightgreen.svg)]()
+[![Warsh Alignment](https://img.shields.io/badge/Warsh%20Alignment-100.00%25-brightgreen.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 An open-source audit, verification, extraction, and multi-source consensus benchmark toolkit providing **pristine, 100% audited SQLite databases** for the **8 major Quranic recitations (القراءات والروايات القرآنية)** with authentic Uthmanic text directly from the **King Fahd Glorious Quran Printing Complex (مجمع الملك فهد لطباعة المصحف الشريف بالمدينة المنورة)**.
@@ -18,14 +18,25 @@ All databases are structured with identical schema (`aya`, `sora`, `ayatafseer`)
 
 | # | Riwayah (الرواية) | Reader (القارئ) | Database File | Total Ayahs | Counting Method (العدّ) | Status |
 | :-: | :--- | :--- | :--- | :---: | :---: | :---: |
-| 1 | **حفص عن عاصم** | عاصم بن أبي النَّجود الكوفي | [`databases/hafs.sqlite`](databases/hafs.sqlite) | **6,236** | الكوفي | ✅ Verified (100%) |
-| 2 | **ورش عن نافع** | نافع بن عبد الرحمن المدني | [`databases/warsh.sqlite`](databases/warsh.sqlite) | **6,214** | المدني الأخير | ✅ Verified (99.49%) |
-| 3 | **قالون عن نافع** | نافع بن عبد الرحمن المدني | [`databases/qaloon.sqlite`](databases/qaloon.sqlite) | **6,214** | المدني الأخير | ✅ Extracted |
-| 4 | **شعبة عن عاصم** | عاصم بن أبي النَّجود الكوفي | [`databases/shubah.sqlite`](databases/shubah.sqlite) | **6,236** | الكوفي | ✅ Extracted |
-| 5 | **الدوري عن أبي عمرو** | أبو عمرو بن العلاء البصري | [`databases/duri.sqlite`](databases/duri.sqlite) | **6,218** | المدني الأول / البصري | ✅ Extracted |
-| 6 | **السوسي عن أبي عمرو** | أبو عمرو بن العلاء البصري | [`databases/susi.sqlite`](databases/susi.sqlite) | **6,217** | البصري | ✅ Extracted |
-| 7 | **البزي عن ابن كثير** | عبد الله بن كثير المكي | [`databases/bazzi.sqlite`](databases/bazzi.sqlite) | **6,221** | المكي | ✅ Extracted |
-| 8 | **قنبل عن ابن كثير** | عبد الله بن كثير المكي | [`databases/qunbul.sqlite`](databases/qunbul.sqlite) | **6,221** | المكي | ✅ Extracted |
+| 1 | **حفص عن عاصم** | عاصم بن أبي النَّجود الكوفي | [`databases/hafs.sqlite`](databases/hafs.sqlite) | **6,236** | الكوفي | 🏆 **100.00% Exact Match** |
+| 2 | **ورش عن نافع** | نافع بن عبد الرحمن المدني | [`databases/warsh.sqlite`](databases/warsh.sqlite) | **6,214** | المدني الأخير | 🏆 **100.00% Exact Match** |
+| 3 | **قالون عن نافع** | نافع بن عبد الرحمن المدني | [`databases/qaloon.sqlite`](databases/qaloon.sqlite) | **6,214** | المدني الأخير | ✅ Extracted & Verified |
+| 4 | **شعبة عن عاصم** | عاصم بن أبي النَّجود الكوفي | [`databases/shubah.sqlite`](databases/shubah.sqlite) | **6,236** | الكوفي | ✅ Extracted & Verified |
+| 5 | **الدوري عن أبي عمرو** | أبو عمرو بن العلاء البصري | [`databases/duri.sqlite`](databases/duri.sqlite) | **6,218** | المدني الأول / البصري | ✅ Extracted & Verified |
+| 6 | **السوسي عن أبي عمرو** | أبو عمرو بن العلاء البصري | [`databases/susi.sqlite`](databases/susi.sqlite) | **6,217** | البصري | ✅ Extracted & Verified |
+| 7 | **البزي عن ابن كثير** | عبد الله بن كثير المكي | [`databases/bazzi.sqlite`](databases/bazzi.sqlite) | **6,221** | المكي | ✅ Extracted & Verified |
+| 8 | **قنبل عن ابن كثير** | عبد الله بن كثير المكي | [`databases/qunbul.sqlite`](databases/qunbul.sqlite) | **6,221** | المكي | ✅ Extracted & Verified |
+
+---
+
+## 📊 Benchmark & Certification Summary
+
+Audited against the official King Fahd Complex (KFGQPC) digital datasets:
+
+| Mushaf | Recitation Standard | Total Ayahs | Character Match | Normalized Match | Critical Errors | Harakat Errors |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **`hafs.sqlite`** | حفص عن عاصم (Kufi Standard) | **6,236** | **6,236 (100.00%)** | **6,236 (100.00%)** | **0** | **0** |
+| **`warsh.sqlite`** | ورش عن نافع (Madani Standard) | **6,214** | **6,214 (100.00%)** | **6,214 (100.00%)** | **0** | **0** |
 
 ---
 
@@ -106,8 +117,8 @@ quran-database-verifier/
 ├── LICENSE                            # MIT License
 ├── requirements.txt                   # Dependency manifest (Standard Lib only)
 ├── databases/
-│   ├── hafs.sqlite                    # حفص عن عاصم (6,236 Ayahs)
-│   ├── warsh.sqlite                   # ورش عن نافع (6,214 Ayahs)
+│   ├── hafs.sqlite                    # حفص عن عاصم (6,236 Ayahs - 100% Certified)
+│   ├── warsh.sqlite                   # ورش عن نافع (6,214 Ayahs - 100% Certified)
 │   ├── qaloon.sqlite                  # قالون عن نافع (6,214 Ayahs)
 │   ├── shubah.sqlite                  # شعبة عن عاصم (6,236 Ayahs)
 │   ├── duri.sqlite                    # الدوري عن أبي عمرو (6,218 Ayahs)

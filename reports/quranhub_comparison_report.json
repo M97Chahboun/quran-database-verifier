@@ -1,0 +1,41 @@
+{
+  "quranhub": {
+    "source_url": "https://raw.githubusercontent.com/QuranHub/quran-pages-images/main/ayat/warsh/data/quran.db",
+    "tables": [
+      "ayas"
+    ],
+    "total_rows": 6236,
+    "min_page": 1,
+    "max_page": 604,
+    "total_pages": 604,
+    "page_counts_sample": {
+      "1": 7,
+      "2": 5,
+      "3": 11,
+      "4": 8,
+      "5": 5,
+      "6": 8,
+      "7": 11,
+      "8": 9,
+      "9": 4,
+      "10": 8
+    }
+  },
+  "local_warsh": {
+    "db_file": "warsh.sqlite",
+    "total_ayahs": 6214,
+    "total_surahs": 114,
+    "numbering_system": "Authentic Madani (6,213 verses, unnumbered Basmalahs)"
+  },
+  "local_hafs": {
+    "db_file": "hafs.sqlite",
+    "total_ayahs": 6236,
+    "numbering_system": "Kufi (6,236 verses, Al-Fatiha Basmalah = 1)"
+  },
+  "comparison_insights": [
+    "QuranHub's `quran.db` contains image bounding box coordinates (page, x, y) for rendering highlights on Warsh page images.",
+    "QuranHub indexes ayahs using a 6,236 global sequential key (1 to 6236) across 604 pages.",
+    "Local `warsh.sqlite` stores full Uthmani text, diacritics, search text, hizb, and joza across 6,213 authentic Madani verses.",
+    "Local `hafs.sqlite` contains 6,236 verses matching the exact count in QuranHub."
+  ]
+}

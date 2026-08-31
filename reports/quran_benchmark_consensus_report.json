@@ -1,0 +1,38 @@
+{
+  "hafs": {
+    "mushaf": "Hafs (حفص عن عاصم)",
+    "total_verses": 6236,
+    "sources": {
+      "King Fahd Complex (KFGQPC / Quranpedia)": {
+        "matches": 6236,
+        "percentage": 100.0
+      },
+      "Quran.com (API v4)": {
+        "matches": 1183,
+        "percentage": 18.97
+      },
+      "AlQuran Cloud (Islamic Network)": {
+        "matches": 1184,
+        "percentage": 18.99
+      }
+    },
+    "kfgqpc_accuracy": {
+      "count": 6236,
+      "percentage": 100.0
+    }
+  },
+  "warsh": {
+    "mushaf": "Warsh (ورش عن نافع - طريق الأزرق)",
+    "total_verses": 6214,
+    "sources": {
+      "King Fahd Complex (KFGQPC Warsh / Quranpedia)": {
+        "matches": 6214,
+        "percentage": 100.0
+      }
+    },
+    "kfgqpc_accuracy": {
+      "count": 6214,
+      "percentage": 100.0
+    }
+  }
+}

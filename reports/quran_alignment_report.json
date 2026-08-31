@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-08-31T01:03:15.355208",
+  "source_api": "https://api.quranpedia.net/v1",
+  "mushafs": [
+    {
+      "flavor": "hafs",
+      "db_path": "/Users/m97chahboun/Development/tathbeet/quran_challenge/databases/hafs.sqlite",
+      "mushaf_id": 2,
+      "total_db_ayahs": 6236,
+      "total_api_ayahs": 6236,
+      "total_surahs": 114,
+      "exact_matches": 6236,
+      "normalized_matches": 6236,
+      "tatweel_only_diffs": 0,
+      "nfkd_only_diffs": 0,
+      "waqf_only_diffs": 0,
+      "critical_diffs": 0,
+      "harakat_diffs": 0,
+      "orthographic_diffs": 0,
+      "structural_diffs": 0,
+      "internal_issues": [],
+      "discrepancies": [],
+      "surah_count_mismatches": []
+    },
+    {
+      "flavor": "warsh",
+      "db_path": "/Users/m97chahboun/Development/tathbeet/quran_challenge/databases/warsh.sqlite",
+      "mushaf_id": 4,
+      "total_db_ayahs": 6214,
+      "total_api_ayahs": 6214,
+      "total_surahs": 114,
+      "exact_matches": 6214,
+      "normalized_matches": 6214,
+      "tatweel_only_diffs": 0,
+      "nfkd_only_diffs": 0,
+      "waqf_only_diffs": 0,
+      "critical_diffs": 0,
+      "harakat_diffs": 0,
+      "orthographic_diffs": 0,
+      "structural_diffs": 0,
+      "internal_issues": [],
+      "discrepancies": [],
+      "surah_count_mismatches": []
+    }
+  ]
+}
