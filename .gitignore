@@ -10,3 +10,7 @@ venv/
 databases/.cache/
 databases/reference/
 .DS_Store
+
+# Riwayat Phoneme datasets (hosted via GitHub Releases)
+*_phonemes.json
+.vscode/
